@@ -1,0 +1,58 @@
+footer {
+    display: flex;
+
+    height: 150px;
+
+    padding-left: 5%;
+    padding-right: 5%;
+
+    cursor: pointer;
+
+    color: var(--wp--preset--color--secondary-text-color);
+
+    position: relative;
+    z-index: 1;
+
+    backdrop-filter: blur(var(--blur));
+
+    clip-path: var(--footer-svg);
+    -webkit-clip-path: var(--footer-svg);
+}
+
+footer :first-child {
+    display: flex;
+
+    flex-wrap: wrap;
+    align-items: flex-end;
+
+    flex: 1;
+}
+
+footer .is-layout-flex {
+    display: flex;
+
+    flex-wrap: wrap;
+    align-items: flex-end;
+
+    margin-block-end: calc(0.67em * 2);
+    margin-block-start: calc(0.67em * 2);
+}
+
+footer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: var(--wp--preset--color--primary);
+
+    opacity: var(--transparency);
+    /* Your transparency */
+    z-index: -1;
+    /* Pulls it behind the text */
+
+    clip-path: var(--footer-svg);
+    -webkit-clip-path: var(--footer-svg);
+}

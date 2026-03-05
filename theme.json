@@ -1,0 +1,61 @@
+{
+  "version": 3,
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "settings": {
+    "appearanceTools": true,
+
+    "layout": {
+      "contentSize": "800px",
+      "wideSize": "1200px"
+    },
+    "color": {
+      "palette": [
+        { "slug": "primary", "color": "#2d2f4f", "name": "Primary" },
+        { "slug": "secondary", "color": "#6e7ca7", "name": "Secondary" },
+        { "slug": "tertiary", "color": "#b7855a", "name": "Tertiary" },
+
+        { "slug": "sub-primary", "color": "#515271", "name": "Sub-Primary" },
+        { "slug": "sub-secondary", "color": "#8e9bc4", "name": "Sub-Secondary" },
+        { "slug": "subtertiary", "color": "#d4a47b", "name": "Sub-Tertiary" },
+
+        { "slug": "primary-text-color", "color": "#000000", "name": "Primary Text Color" },
+        { "slug": "secondary-text-color", "color": "#FFFFFF", "name": "Secondary Text Color" }
+      ]
+    },
+
+    "typography": {
+      "fontFamilies": [
+        {
+          "fontFamily": "'Beyond-Wonderland', sans-serif",
+          "slug": "beyond-wonderland",
+          "name": "Beyond Wonderland",
+          "fontFace": [
+            {
+              "fontFamily": "BeyondWonderland",
+              "fontWeight": "400",
+              "fontStyle": "normal",
+              "src": [ "file:./assets/Fonts/Beyond Wonderland.ttf" ]
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "styles": {
+
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--beyond-wonderland)"
+    },
+
+    "background": { 
+      "backgroundImage": {
+        "url": "file:./assets/images/background.jpeg",
+        "source": "file"
+      },
+      "backgroundSize": "cover",
+      "backgroundPosition": "center center",
+      "backgroundRepeat": "no-repeat",
+      "backgroundAttachment": "fixed"
+    }
+  }
+}
