@@ -7,7 +7,7 @@ class githubIssues extends HTMLElement {
     }
 
     connectedCallback() {
-        let issues = loadGitHubIssues();
+        let issues = loadGitHubIssues(this.getAttribute('repoUrl') || 'https://api.github.com/repos/facebook/react/issues?state=all&per_page=100');
 
         issues.then(issuesJSON => {
             for (const issueNumber in issuesJSON) {
