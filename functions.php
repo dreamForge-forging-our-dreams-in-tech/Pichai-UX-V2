@@ -49,8 +49,12 @@ function github_repos_shortcode($atts)
 }
 add_shortcode('github-repos', 'github_repos_shortcode');
 
-add_shortcode('github-issues', function () {
-    return '<github-issues class="grid-container"></github-issues>';
+add_shortcode('github-issues', function ($atts) {
+    $a = shortcode_atts(array(
+        'repoUrl' => '', // default value
+    ), $atts);
+
+    return '<github-issues repoUrl="' . esc_attr($a['repoUrl']) . '" class="grid-container"></github-issues>';
 });
 
 add_shortcode('github-login', function () {

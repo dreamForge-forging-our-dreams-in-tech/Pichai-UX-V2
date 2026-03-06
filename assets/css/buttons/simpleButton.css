@@ -1,6 +1,5 @@
 /* Of every element there exists a class with the same name */
 
-simple-button,
 .simple-button {
     padding: 8px;
 
@@ -18,7 +17,6 @@ simple-button,
     text-align:center;
 }
 
-simple-button::before,
 .simple-button::before {
     content: "";
     position: absolute;
