@@ -7,13 +7,15 @@ class githubIssues extends HTMLElement {
     }
 
     connectedCallback() {
+        this.reloadIssues();
+    }
+
+    reloadIssues(labels = 'All') {
         let issues = loadGitHubIssues(this.getAttribute('repoUrl') || 'https://api.github.com/repos/facebook/react/issues?state=all&per_page=100');
 
         issues.then(issuesJSON => {
             for (const issueNumber in issuesJSON) {
                 const issue = issuesJSON[issueNumber];
-
-                console.log(issue.labels);
 
                 let tile = document.createElement('store-tile');
                 tile.setAttribute('name', issue.title);
