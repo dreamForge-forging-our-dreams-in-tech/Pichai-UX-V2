@@ -32,13 +32,13 @@ class githubIssues extends HTMLElement {
 customElements.define("github-issues", githubIssues);
 
 
-async function loadGitHubIssues() {
+async function loadGitHubIssues(url = 'https://api.github.com/repos/${OWNER}/${REPO}/issues?state=all&per_page=100') {
 
     try {
 
         // Point this to your Render URL (e.g., https://your-app.onrender.com/api/issues)
         // If testing locally, use 'http://localhost:3000/api/issues'
-        const response = await fetch('https://github-app-a49q.onrender.com/api/issues');
+        const response = await fetch(`https://github-app-a49q.onrender.com/api/issues?origin=${url}`);
 
         if (!response.ok) {
             throw new Error(`Server error: ${response.status}`);
