@@ -50,13 +50,15 @@ function github_repos_shortcode($atts)
 add_shortcode('github-repos', 'github_repos_shortcode');
 
 add_shortcode('github-issues', function ($atts) {
+    // 1. Change 'repoUrl' to 'repourl' to match what the browser actually sees
     $a = shortcode_atts(array(
-        'repoUrl' => '', // default value
+        'repourl' => 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues?state=all&per_page=100',
     ), $atts);
 
-    return '<github-issues repoUrl="' . esc_attr($a['repoUrl']) . '" class="grid-container"></github-issues>';
+    // 2. Render it with the lowercase attribute name
+    return '<github-issues repourl="' . esc_attr($a['repourl']) . '" class="grid-container github-issues"></github-issues>';
 });
-
+    
 add_shortcode('github-login', function () {
     return '<github-login></github-login>';
 });

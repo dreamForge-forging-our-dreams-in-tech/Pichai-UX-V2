@@ -1,0 +1,91 @@
+.tabBarHolder {
+    padding: 3px;
+
+    display: grid;
+    grid-column-gap: 4px;
+
+    border-radius: 800px;
+
+    width: max-content;
+
+    overflow-x: auto;
+
+    position:fixed;
+    z-index: 1;
+    /* Establishes a stacking context */
+
+    backdrop-filter: blur(var(--blur));
+    border-radius: var(--border-radius-rounded);
+
+    margin:8px;
+}
+
+.tabBarHolder:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    background-color: var(--wp--preset--color--primary);
+
+    opacity: var(--transparency);
+    /* Your transparency */
+    z-index: -1;
+    /* Pulls it behind the text */
+
+    border: none;
+    border-radius: var(--border-radius-rounded);
+}
+
+.tabBarHolder a {
+    text-align: center;
+
+    background-color: TRANSPARENT;
+
+    color: var(--wp--preset--color--secondary-text-color);
+
+    text-decoration: none;
+
+    height: 12px;
+    line-height: 13px;
+
+    padding: 8px;
+
+    /* width: 150px; */
+
+    border-radius: 200px;
+
+    white-space: nowrap;
+}
+
+.tabBarHolder .current {
+    background-color: var(--wp--preset--color--sub-primary);
+    color: var(--wp--preset--color--secondary-text-color);
+}
+
+.tabBarHolder .current::before {
+    background-color: var(--wp--preset--color--sub-primary);
+    opacity: var(--transparency);
+}
+
+.verticalTabbar {
+    writing-mode: vertical-rl;
+
+    overflow-y: auto;
+
+    max-height: calc(100% - 16px);
+}
+
+.verticalTabbar a {
+    max-width: 12px;
+    height: max-content;
+}
+
+@media (max-width: 768px) {
+    .tabBarHolder {
+        bottom:0px;
+        left:0px;
+    }
+}

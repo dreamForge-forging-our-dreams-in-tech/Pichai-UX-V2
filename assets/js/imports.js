@@ -8,6 +8,8 @@ import './github/githubLogin.js';
 
 import './cardviews/storeCardview.js';
 
+import './navigation/navigation_rail.js';
+
 //im very lazy so im just gonna add the tag name as a class to every element in the document
 //This will basically apply the css class stylings automatically to the right elements without having to add the class manually.
 //To make this work every elements has to have its own CSS class e.g. simple-button becomes .simple-button in the CSS file and so on.

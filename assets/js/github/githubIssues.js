@@ -11,7 +11,7 @@ class githubIssues extends HTMLElement {
     }
 
     reloadIssues(labels = 'All') {
-        let issues = loadGitHubIssues(this.getAttribute('repoUrl') || 'https://api.github.com/repos/facebook/react/issues?state=all&per_page=100');
+        let issues = loadGitHubIssues(this.getAttribute('repoUrl'));
 
         issues.then(issuesJSON => {
             for (const issueNumber in issuesJSON) {
@@ -34,7 +34,7 @@ class githubIssues extends HTMLElement {
 customElements.define("github-issues", githubIssues);
 
 
-async function loadGitHubIssues(url = 'https://api.github.com/repos/${OWNER}/${REPO}/issues?state=all&per_page=100') {
+async function loadGitHubIssues(url = 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues?state=all&per_page=100') {
 
     try {
 
