@@ -22,3 +22,29 @@ window.onload = function() {
         element.classList.add(element.tagName.toLowerCase());
     });
 }
+
+// 1. Select the target node
+const targetNode = document.body;
+
+// 2. Configure what to observe
+const config = { 
+  childList: true, // Target additions/removals of direct children
+  subtree: true    // Target additions/removals within the entire tree (all descendants)
+};
+
+// 3. Define the callback function
+const callback = (mutationsList) => {
+    for (const mutation of mutationsList) {
+        if (mutation.type === 'childList') {
+            mutation.addedNodes.forEach(node => window.onload());
+            mutation.removedNodes.forEach(node => window.onload());
+        }
+    }
+};
+
+// 4. Create and start the observer
+const observer = new MutationObserver(callback);
+observer.observe(targetNode, config);
+
+// To stop observing later:
+// observer.disconnect();
