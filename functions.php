@@ -58,7 +58,7 @@ add_shortcode('github-issues', function ($atts) {
     // 2. Render it with the lowercase attribute name
     return '<github-issues repourl="' . esc_attr($a['repourl']) . '" class="grid-container github-issues"></github-issues>';
 });
-    
+
 add_shortcode('github-login', function () {
     return '<github-login></github-login>';
 });
@@ -67,12 +67,12 @@ function store_tile_shortcode($atts)
 {
     // 1. Keys must be LOWERCASE here to match WordPress processing
     $a = shortcode_atts(array(
-        'name'             => 'default-store',
-        'price'            => '0.00',
-        'release'          => '2024-01-01',
+        'name' => 'default-store',
+        'price' => '0.00',
+        'release' => '2024-01-01',
         'shortdescription' => 'No description available.', // Lowercase
-        'storeurl'         => '#',                          // Lowercase
-        'imagesrc'         => 'https://via.placeholder.com/150', // Lowercase
+        'storeurl' => '#',                          // Lowercase
+        'imagesrc' => 'https://via.placeholder.com/150', // Lowercase
     ), $atts);
 
     // 2. Escape the output for security and stability
