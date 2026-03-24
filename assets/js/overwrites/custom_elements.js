@@ -4,7 +4,6 @@
 const originalDefine = customElements.define;
 
 function wrapClass(OriginalClass, name) {
-    console.log('test')
     return class extends OriginalClass {
         connectedCallback() {
             // 1. You MUST call the original connectedCallback if it exists!

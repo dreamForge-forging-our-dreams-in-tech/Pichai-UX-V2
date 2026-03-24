@@ -1,3 +1,6 @@
+import { GithubIntergration } from "../functions.js";
+let github_intergration = new GithubIntergration();
+
 // Create a class for the element
 class GithubRepos extends HTMLElement {
 
@@ -7,7 +10,7 @@ class GithubRepos extends HTMLElement {
     }
 
     connectedCallback() {
-        let repos = listReposWithLogos(this.getAttribute('orgName'));
+        let repos = github_intergration.listReposWithLogos(this.getAttribute('orgName'));
 
         repos.then(reposJSON => {
             for (const repoName in reposJSON) {
@@ -28,23 +31,3 @@ class GithubRepos extends HTMLElement {
 }
 
 customElements.define("github-repositories", GithubRepos);
-
-async function listReposWithLogos(orgName, container) { // retrieves a lists of all github repos for a org and displays them in the provided container.
-        const url = `https://api.github.com/orgs/${orgName}/repos?per_page=100`;
-
-        try {
-            const response = await fetch(url);
-            const repos = await response.json();
-
-            let reposJSON = {};
-
-            repos.forEach(repo => {
-                reposJSON[repo.name] = repo;
-            });
-
-            return reposJSON;
-
-        } catch (error) {
-            console.error("Error:", error);
-        }
-    }
