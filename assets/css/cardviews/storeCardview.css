@@ -17,6 +17,8 @@
 
 .store-tile img {
     border-radius: var(--border-radius-short);
+
+    width:100%;
 }
 
 .store-tile p{

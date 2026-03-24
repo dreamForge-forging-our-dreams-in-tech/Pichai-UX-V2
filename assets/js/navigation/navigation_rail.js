@@ -89,7 +89,7 @@ function addForConnection(e, e2) {
     let i;
 
     //fires the pageChanged function on the connected for element, it executes what the developer put into the pageChanged function/callback.
-    element.pageChanged();
+    element.pageChanged(e.parentNode.getElementsByClassName('current')[0], this.getAttribute('index'));
 }
 
 function removeForConnection(e, e2) {

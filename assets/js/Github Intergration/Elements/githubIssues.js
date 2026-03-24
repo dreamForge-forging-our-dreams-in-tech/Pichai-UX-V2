@@ -13,6 +13,10 @@ class githubIssues extends HTMLElement {
         this.reloadIssues();
     }
 
+    pageChanged(index, item) {
+        this.setAttribute('repoUrl', '')
+    }
+
     reloadIssues(labels = 'All') {
         //check if the service is active and only load issues if its able to talk to the service
         this.innerHTML = 'Loading Github issues...'
