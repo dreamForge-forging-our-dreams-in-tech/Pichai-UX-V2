@@ -81,7 +81,7 @@ main {
 
     width: 100%;
 
-    overflow-x:auto;
+    overflow-x: auto;
 }
 
 .row store-tile,
@@ -112,4 +112,23 @@ main {
 
 .no-bg::before {
     background: none;
+}
+
+*::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    opacity: var(--transparency);
+    width: 100%;
+    height: 100%;
+}
+
+* {
+    position: relative;
+    z-index: 1;
+    /* Establishes a stacking context */
 }
