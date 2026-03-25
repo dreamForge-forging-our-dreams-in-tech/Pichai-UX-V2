@@ -42,3 +42,7 @@
     border: none;
     border-radius: var(--border-radius-short);
 }
+
+.store-tile .simple-button {
+    margin-top:8px;
+}

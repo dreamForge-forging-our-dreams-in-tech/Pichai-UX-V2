@@ -11,27 +11,16 @@ constructor() {
         const itemIamge = document.createElement('img');
         itemIamge.src = this.getAttribute('imageSrc') || 'https://via.placeholder.com/150';
         itemIamge.alt = this.getAttribute('name') || 'Product Image';
-        this.appendChild(itemIamge);
 
         let nameHolder = document.createElement('h2');
         nameHolder.textContent = this.getAttribute('name') || 'Unknown Product';
-        this.appendChild(nameHolder);
 
         const itemInfo = document.createElement('p');
-        let info = '';
-        const price = this.getAttribute('price');
-        const release = this.getAttribute('release');
-        const description = this.getAttribute('shortDescription');
 
-        if (price) info += `Price: ${price} <br>`;
-        if (release) info += `Release: ${release} <br>`;
-        if (description) info += `<br>${description}`;
+        if (price) itemInfo.innerHTML += `Price: ${this.getAttribute('price')} <br>`;
+        if (release) itemInfo.innerHTML += `Release: ${this.getAttribute('release')} <br>`;
+        if (description) itemInfo.innerHTML += `<br>${this.getAttribute('shortDescription')}`;
 
-        itemInfo.innerHTML = info;
-
-        this.appendChild(itemInfo);
-
-        // This runs when the element is added to the document
         const storeButton = document.createElement('simple-button');
         storeButton.textContent = "Go to " + this.getAttribute('name');
 
@@ -44,7 +33,7 @@ constructor() {
             }
         });
         
-        this.appendChild(storeButton);
+        this.append(itemIamge, nameHolder, itemInfo, storeButton)
     }
 }
 

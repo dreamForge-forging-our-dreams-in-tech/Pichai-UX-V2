@@ -13,6 +13,8 @@ import './cardviews/storeCardview.js';
 
 import './navigation/navigation_rail.js';
 
+
+//make a startup call to the render service once the site has loaded
 let github_intergration = new GithubIntergration();
 
 github_intergration.initializeRenderService().then((result) => {

@@ -25,11 +25,9 @@ class NavigationRail extends HTMLElement {
 
         this.classList.add('tabBarHolder');
 
-        this.style.gridTemplateColumns = `repeat(` + keys.length + `, 1fr)`;
+        this.style.gridTemplateColumns = `repeat(` + keys.length + `, 1fr)`; // dynamically calculate size of each item
 
-        if (this.getAttribute('direction') == 'vertical') {
-            this.classList.add('verticalTabbar');
-        }
+        if (this.getAttribute('direction') == 'vertical') this.classList.add('verticalTabbar');
 
         if (!forAttr == '') {
             addForConnection(this, forAttr);
@@ -39,9 +37,7 @@ class NavigationRail extends HTMLElement {
             i.setAttribute('index', index);
 
             //automatically select href refrencing to page url.
-            if (i.href == window.location.href) {
-                i.classList.add('current');
-            }
+            if (i.href == window.location.href) i.classList.add('current');
 
             if (!forAttr == '') {
                 let element = document.getElementById(forAttr);
@@ -70,11 +66,8 @@ class NavigationRail extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if (this.getAttribute('direction') == 'vertical') {
-            this.classList.add('verticalTabbar');
-        } else {
-            this.classList.remove('verticalTabbar');
-        }
+        if (this.getAttribute('direction') == 'vertical') this.classList.add('verticalTabbar');
+        if (this.getAttribute('direction') != 'vertical') this.classList.remove('verticalTabbar');
 
         if (!this.getAttribute('for') == '') {
             addForConnection(this, this.getAttribute('for'));
