@@ -1,4 +1,4 @@
-import { GithubIntergration } from "../functions.js";
+import { GithubIntergration } from "../GithubIntergration.js";
 let github_intergration = new GithubIntergration();
 
 // Create a class for the element
@@ -9,10 +9,10 @@ class GithubRepos extends HTMLElement {
         super();
     }
 
-    connectedCallback() {
-        let repos = github_intergration.listReposWithLogos(this.getAttribute('orgName'));
+    async connectedCallback() {
+        let repos = await github_intergration.listReposWithLogos(this.getAttribute('orgName'));
 
-        repos.then(reposJSON => {
+        github_intergration.listReposWithLogos(this.getAttribute('orgName')).then(reposJSON => {
             for (const repoName in reposJSON) {
                 const repo = reposJSON[repoName];
 

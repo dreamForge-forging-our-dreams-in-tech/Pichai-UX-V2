@@ -1,3 +1,5 @@
+import { get_fetch } from "../Functions/fetch_get.js";
+
 class GithubIntergration {
     constructor() {
 
@@ -16,18 +18,11 @@ class GithubIntergration {
     async loadGitHubIssues(url = 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues?state=all&per_page=100') {
 
         try {
-
             // Point this to your Render URL (e.g., https://your-app.onrender.com/api/issues)
             // If testing locally, use 'http://localhost:3000/api/issues'
-            const response = await fetch(`https://github-app-a49q.onrender.com/api/issues?origin=${url}`);
+            const issues = await get_fetch(`https://github-app-a49q.onrender.com/api/issues?origin=${url}`)
 
-            if (!response.ok) {
-                throw new Error(`Server error: ${response.status}`);
-            }
-
-            const issues = await response.json();
-
-            // Loop through issues and create HTML elements
+            // Loop through issues and create a json
             let issuesJSON = {};
             issues.forEach(issue => {
                 issuesJSON[issue.number] = issue;
@@ -41,11 +36,8 @@ class GithubIntergration {
     }
 
     async listReposWithLogos(orgName) { // retrieves a lists of all github repos for a org and displays them in the provided container.
-        const url = `https://api.github.com/orgs/${orgName}/repos?per_page=100`;
-
         try {
-            const response = await fetch(url);
-            const repos = await response.json();
+            const repos = await get_fetch(`https://api.github.com/orgs/${orgName}/repos?per_page=100`)
 
             let reposJSON = {};
 

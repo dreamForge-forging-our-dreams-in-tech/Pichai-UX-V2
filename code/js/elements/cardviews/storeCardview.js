@@ -17,9 +17,13 @@ constructor() {
 
         const itemInfo = document.createElement('p');
 
-        if (price) itemInfo.innerHTML += `Price: ${this.getAttribute('price')} <br>`;
-        if (release) itemInfo.innerHTML += `Release: ${this.getAttribute('release')} <br>`;
-        if (description) itemInfo.innerHTML += `<br>${this.getAttribute('shortDescription')}`;
+        let price = this.getAttribute('price');
+        let release = this.getAttribute('release');
+        let description = this.getAttribute('shortDescription');
+        
+        if (price) itemInfo.innerHTML += `Price: ${price} <br>`;
+        if (release) itemInfo.innerHTML += `Release: ${release} <br>`;
+        if (description) itemInfo.innerHTML += `<br>${description}`;
 
         const storeButton = document.createElement('simple-button');
         storeButton.textContent = "Go to " + this.getAttribute('name');

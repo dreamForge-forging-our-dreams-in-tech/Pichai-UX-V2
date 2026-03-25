@@ -2,16 +2,16 @@ console.log('Hello There.');
 
 import './overwrites/custom_elements.js';
 
-import './button/simpleButton.js';
+import './elements/button/simpleButton.js';
 
-import { GithubIntergration } from './Github Intergration/functions.js';
+import { GithubIntergration } from './Github Intergration/GithubIntergration.js';
 import './Github Intergration/Elements/githubIssues.js';
 import './Github Intergration/Elements/githubRepos.js';
 import './Github Intergration/Elements/githubLogin.js';
 
-import './cardviews/storeCardview.js';
+import './elements/cardviews/storeCardview.js';
 
-import './navigation/navigation_rail.js';
+import './elements/navigation/navigation_rail.js';
 
 
 //make a startup call to the render service once the site has loaded

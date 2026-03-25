@@ -18,20 +18,9 @@
     width: 100%;
 }
 
-.store-tile p {
+.store-tile h2, .store-tile p {
     margin-top: 8px;
     margin-bottom: 8px;
-
-    margin-bottom: auto;
-
-    color: white;
-}
-
-.store-tile h2 {
-    margin-top: 8px;
-    margin-bottom: 8px;
-
-    margin-bottom: auto;
 
     color: white;
 }
@@ -44,5 +33,5 @@
 }
 
 .store-tile .simple-button {
-    margin-top:8px;
+    margin-top:auto;
 }
