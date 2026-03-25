@@ -5,10 +5,6 @@
 
     color: var(--wp--preset--color--secondary-text-color);
 
-    position: relative;
-    z-index: 1;
-    /* Establishes a stacking context */
-
     backdrop-filter: blur(var(--blur));
     border-radius: var(--border-radius-rounded);
 
@@ -16,19 +12,7 @@
 }
 
 .text-input::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-
     background-color: var(--wp--preset--color--primary);
-
-    opacity: var(--transparency);
-    /* Your transparency */
-    z-index: -1;
-    /* Pulls it behind the text */
 
     border: none;
     border-radius: var(--border-radius-rounded);

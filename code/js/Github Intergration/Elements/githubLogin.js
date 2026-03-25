@@ -15,17 +15,14 @@ class GithubLogin extends HTMLElement {
         const title = document.createElement('h2');
         title.textContent = 'Login or Register with Github';
         title.classList.add('dialog-title');
-        wrapper.appendChild(title);
 
         const message = document.createElement('div');
         message.innerHTML = `To use some of the features of this website, you need to login or register with your Github account. <br><br>
         Granting access allows this application to read your account information and perform actions on your behalf, such as managing repositories and modifying issues or comments. <br><br>`;
         message.classList.add('dialog-content');
-        wrapper.appendChild(message);
 
         const confirm = document.createElement('div');
         confirm.classList.add('dialog-content-end');
-        wrapper.appendChild(confirm);
 
         const confirmation = document.createElement('input');
         confirmation.type = 'checkbox';
@@ -40,10 +37,7 @@ class GithubLogin extends HTMLElement {
         confirmationLabel.htmlFor = 'confirmation';
         confirmationLabel.textContent = 'I give permission to provide this site with my Github credentials and am aware that this may be a login with a 3rd party website unaffiliated with dreamForge(check this to show button).';
 
-        confirm.appendChild(confirmation);
-        confirm.appendChild(confirmationLabel);
-
-        wrapper.appendChild(confirm);
+        confirm.append(confirmation, confirmationLabel)
 
         const button = document.createElement('simple-button');
         button.style.display = 'none'; // hide the button until the user gives permission
@@ -55,7 +49,7 @@ class GithubLogin extends HTMLElement {
             window.location.href = 'https://github-app-a49q.onrender.com/login?origin=' + window.location.href; // redirect to the backend login route, which will handle the OAuth flow and then redirect back to the original page after successful authentication.
         });
 
-        wrapper.appendChild(button);
+        wrapper.append(title, message, confirm, button);
 
         this.appendChild(wrapper);
 

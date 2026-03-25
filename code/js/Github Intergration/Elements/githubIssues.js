@@ -1,4 +1,4 @@
-import { GithubIntergration } from "../functions.js";
+import { GithubIntergration } from "../GithubIntergration.js";
 let github_intergration = new GithubIntergration();
 
 // Create a class for the element
@@ -19,7 +19,6 @@ class githubIssues extends HTMLElement {
 
     reloadIssues(labels = 'All') {
         //check if the service is active and only load issues if its able to talk to the service
-        this.innerHTML = 'Loading Github issues...'
         github_intergration.initializeRenderService().then((result) => {
             let issues = github_intergration.loadGitHubIssues(this.getAttribute('repoUrl'));
 
