@@ -132,3 +132,8 @@ main {
     z-index: 1;
     /* Establishes a stacking context */
 }
+
+.row {
+    display:flex;
+    flex-direction:row;
+}

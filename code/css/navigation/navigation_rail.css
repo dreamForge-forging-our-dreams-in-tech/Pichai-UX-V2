@@ -4,31 +4,32 @@
     display: grid;
     grid-column-gap: 4px;
 
-    border-radius: 800px;
+    background-color:transparent;
 
     overflow-x: auto;
 
     backdrop-filter: blur(var(--blur));
 
     border-radius: var(--border-radius-rounded);
+    border-width:0px;
 
     margin: 8px;
+
+    color: var(--wp--preset--color--secondary-text-color);
 }
 
-.tabBarHolder:before {
+.tabBarHolder::before {
     background-color: var(--wp--preset--color--primary);
 
     border: none;
     border-radius: var(--border-radius-rounded);
 }
 
-.tabBarHolder a {
-    text-align: center;
-
+.tabBarHolder * {
     background-color: TRANSPARENT;
 
+    text-align: center;
     color: var(--wp--preset--color--secondary-text-color);
-
     text-decoration: none;
 
     height: 12px;

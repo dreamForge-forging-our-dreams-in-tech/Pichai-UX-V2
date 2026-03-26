@@ -8,6 +8,7 @@ import { GithubIntergration } from './Github Intergration/GithubIntergration.js'
 import './Github Intergration/Elements/githubIssues.js';
 import './Github Intergration/Elements/githubRepos.js';
 import './Github Intergration/Elements/githubLogin.js';
+import './Github Intergration/Elements/github_mde_editor.js';
 
 import './elements/cardviews/storeCardview.js';
 

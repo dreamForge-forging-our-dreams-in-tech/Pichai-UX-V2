@@ -6,13 +6,13 @@ class GithubIntergration {
     }
 
     initializeRenderService() { // checks if the render service is active and starts it if it isnt active yet
-            return new Promise((resolve, reject) => {
-                fetch('https://github-app-a49q.onrender.com/ping')
-                    .then(response => {
-                        resolve('Service is awake!', response.status);
-                    })
-                    .catch(err => console.error('Error waking up service:', err));
-            });
+        return new Promise((resolve, reject) => {
+            fetch('https://github-app-a49q.onrender.com/ping')
+                .then(response => {
+                    resolve('Service is awake!', response.status);
+                })
+                .catch(err => console.error('Error waking up service:', err));
+        });
     }
 
     async loadGitHubIssues(url = 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues?state=all&per_page=100') {
@@ -49,6 +49,58 @@ class GithubIntergration {
 
         } catch (error) {
             console.error("Error:", error);
+        }
+    }
+
+    async list_labels(orgName = 'dreamForge-forging-our-dreams-in-tech', repo = 'The-Magic-Garden') { // retrieves a lists of all github repos for a org and displays them in the provided container.
+        try {
+            const labels = await get_fetch(`https://api.github.com/repos/${orgName}/${repo}/labels`)
+
+            let labelsJSON = {};
+
+            labels.forEach(label => {
+                labelsJSON[label.name] = label;
+            });
+
+            return labelsJSON;
+
+        } catch (error) {
+            console.error("Error:", error);
+        }
+    }
+
+    async create_issue(orgname, repo, title, body, labels) {
+        const issuePayload = {
+            owner: orgname,
+            repo: repo,
+            title: title,
+            body: body,
+            labels: [labels]
+        };
+
+        console.log(issuePayload)
+
+        try {
+            const response = await fetch('https://github-app-a49q.onrender.com/create_issue', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // 👈 Tells Render you are sending JSON
+                },
+                body: JSON.stringify(issuePayload) // 👈 Turns the JS object into a string
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`Server error: ${errorData.error || response.statusText}`);
+            }
+
+            const data = await response.json();
+            console.log('✅ Issue successfully created on GitHub!', data);
+            alert('Issue submitted successfully!');
+
+        } catch (error) {
+            console.error('❌ Failed to submit issue:', error);
+            alert(`Error submitting issue: ${error.message}`);
         }
     }
 }
