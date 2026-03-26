@@ -78,8 +78,6 @@ class GithubIntergration {
             labels: [labels]
         };
 
-        console.log(issuePayload)
-
         try {
             const response = await fetch('https://github-app-a49q.onrender.com/create_issue', {
                 method: 'POST',

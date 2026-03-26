@@ -41,8 +41,8 @@ class GithubLogin extends HTMLElement {
 
         const button = document.createElement('simple-button');
         button.style.display = 'none'; // hide the button until the user gives permission
-        button.style.marginTop = '8px'; // add some spacing between the checkbox and the button
-        button.style.margin = 'auto'; // apply auto margin, because there is no central class use this temporary
+        button.classList.add('dialog-button');
+
         button.innerHTML = 'Authorize with Github'; // for clarity and safety this should be controlled by us, the developers of the theme/engine.
 
         button.addEventListener('click', () => {

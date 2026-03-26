@@ -130,7 +130,6 @@ main {
 * {
     position: relative;
     z-index: 1;
-    /* Establishes a stacking context */
 }
 
 .row {

@@ -1,12 +1,17 @@
 .dialog-wrapper {
     min-width: 40%;
-    max-width:60%;
+    max-width:50%;
 
     margin: auto;
 
     display: flex;
     flex-direction: column;
     gap: 4px;
+}
+
+.dialog-wrapper * ::placeholder {
+    /* make any text inputs or placeholders white */
+    color: var(--wp--preset--color--secondary-text-color); 
 }
 
 .dialog-title {
@@ -87,3 +92,14 @@
     border-top-left-radius: var(--border-radius-short);
     border-top-right-radius: var(--border-radius-short);
 }
+
+.dialog-button {
+    margin:auto;
+    margin-top:16px;
+
+    font-size:24px;
+    padding:8px;
+
+    min-width:150px;
+}
+

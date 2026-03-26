@@ -18,6 +18,7 @@ class GithubMde extends HTMLElement {
         title.classList.add('dialog-title');
 
         const info = document.createElement('div');
+        info.style.width = 'calc(100% - 16px)';
         info.classList.add('dialog-content', 'row');
 
         let labels = document.createElement('navigation-rail');
@@ -33,8 +34,9 @@ class GithubMde extends HTMLElement {
             }
 
             labels.style.gridTemplateColumns = `repeat(` + Object.keys(labelJSON).length + `, 1fr)`; // dynamically calculate size of each item
-            console.log(labels.style.gridTemplateColumns)
         });
+
+        labels.classList.add('hideScrollbar');
         labels.style.margin = '0px';
         labels.style.flex = '1';
 
@@ -61,9 +63,11 @@ class GithubMde extends HTMLElement {
 
         let title_input = document.createElement('input');
         title_input.classList.add('tabBarHolder');
+        title_input.placeholder = 'Issue or comment title';
 
-        title_input.style.width = 'calc(100% - 8px)';
+        title_input.style.width = 'calc(100% - 16px)';
         title_input.style.margin = '0px';
+        title_input.style.padding = '8px';
 
         issue_title.append(title_input);
 
@@ -73,17 +77,21 @@ class GithubMde extends HTMLElement {
         let mde_editor = document.createElement('textarea');
         mde_editor.id = 'mde_eitor';
         mde_editor.classList.add('tabBarHolder');
+        mde_editor.placeholder = 'Issue or comment body';
 
-        mde_editor.style.width = 'calc(100% - 8px)';
+        mde_editor.style.width = 'calc(100% - 16px)';
+        mde_editor.style.padding = '8px';
         mde_editor.style.margin = '0px';
-        mde_editor.style.height = '350px'
+        mde_editor.style.height = '250px'
         mde_editor.style.resize = 'vertical';
+        mde_editor.style.borderTopLeftRadius = 'var(--border-radius-short)';
+        mde_editor.style.borderTopRightRadius = 'var(--border-radius-short)';
 
         content.append(mde_editor);
 
         const button = document.createElement('simple-button');
-        button.style.marginTop = '8px'; // add some spacing between the checkbox and the button
-        button.style.margin = 'auto'; // apply auto margin, because there is no central class use this temporary
+        button.classList.add('dialog-button');
+
         button.innerHTML = 'Post'; // for clarity and safety this should be controlled by us, the developers of the theme/engine.
 
         button.addEventListener('click', () => {
