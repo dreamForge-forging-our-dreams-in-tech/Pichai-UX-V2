@@ -94,11 +94,9 @@ class GithubIntergration {
 
             const data = await response.json();
             console.log('✅ Issue successfully created on GitHub!', data);
-            alert('Issue submitted successfully!');
 
         } catch (error) {
             console.error('❌ Failed to submit issue:', error);
-            alert(`Error submitting issue: ${error.message}`);
         }
     }
 }

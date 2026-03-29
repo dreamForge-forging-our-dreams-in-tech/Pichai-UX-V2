@@ -4,14 +4,14 @@
     display: grid;
     grid-column-gap: 4px;
 
-    background-color:transparent;
+    background-color: transparent;
 
     overflow-x: auto;
 
     backdrop-filter: blur(var(--blur));
 
     border-radius: var(--border-radius-rounded);
-    border-width:0px;
+    border-width: 0px;
 
     margin: 8px;
 
@@ -48,6 +48,9 @@
 }
 
 .tabBarHolder .current::before {
+    border-radius: var(--border-radius-rounded);
+    border-width: 0px;
+
     background-color: var(--wp--preset--color--sub-primary);
     opacity: var(--transparency);
 }

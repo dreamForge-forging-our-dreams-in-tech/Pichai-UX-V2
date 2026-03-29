@@ -28,12 +28,10 @@ class GithubMde extends HTMLElement {
 
                 let option = document.createElement('a');
                 option.innerHTML = label.name;
-                label.href = label.name;
+                option.href = label.name;
 
-                labels.append(option);
+                labels.appendChild(option);
             }
-
-            labels.style.gridTemplateColumns = `repeat(` + Object.keys(labelJSON).length + `, 1fr)`; // dynamically calculate size of each item
         });
 
         labels.classList.add('hideScrollbar');
@@ -95,7 +93,7 @@ class GithubMde extends HTMLElement {
         button.innerHTML = 'Post'; // for clarity and safety this should be controlled by us, the developers of the theme/engine.
 
         button.addEventListener('click', () => {
-            github_intergration.create_issue('dreamForge-forging-our-dreams-in-tech', 'The-Magic-Garden', title_input.value, mde_editor.value, 'invalid');
+            github_intergration.create_issue('dreamForge-forging-our-dreams-in-tech', 'The-Magic-Garden', title_input.value, mde_editor.value, labels.getElementsByClassName('current')[0].getAttribute('href'));
         });
 
         wrapper.append(title, info, issue_title, content, button);
