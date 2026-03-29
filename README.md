@@ -4,3 +4,11 @@ Pichai UX is dreamForge Ui design philosophy designed to make interactions perso
 
 ## Wordpress installation
 Users who want to install the Pichai UX theme for wordpress can do so by importing the theme.zip file from the Pichai-UX-V2 repo
+
+
+# Credits
+EasyMDE: https://github.com/ionaru/easy-markdown-editor
+
+Used for the github med editor
+
+------

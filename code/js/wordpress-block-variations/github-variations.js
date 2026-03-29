@@ -33,3 +33,16 @@ wp.blocks.registerBlockVariation('core/shortcode', {
     scope: ['inserter'],
     icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ03yvVXvs-In8Y6zQUHuW1VXUogfBo_zcmQ&s',
 });
+
+
+wp.blocks.registerBlockVariation('core/shortcode', {
+    name: 'github-mde-block',
+    title: 'GitHub MDE',
+    attributes: {
+        // Change 'content' to 'text'
+        text: '[github-mde]' 
+    },
+    isActive: ['text'], // Helps the editor recognize this variation
+    scope: ['inserter'],
+    icon: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJ03yvVXvs-In8Y6zQUHuW1VXUogfBo_zcmQ&s',
+});

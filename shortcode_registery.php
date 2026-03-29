@@ -37,3 +37,12 @@ function sc_store_tile($atts) {
     ], $atts ?? []), 'grid-container');
 }
 add_shortcode('store-tile', 'sc_store_tile');
+
+function github_mde_func($atts) {
+    return wc_tag('github-mde', shortcode_atts([
+        'orgName'             => 'dreamForge-forging-our-dreams-in-tech',
+        'Repo'            => 'The-Magic-Garden',
+
+    ], $atts ?? []), '');
+}
+add_shortcode('github-mde', 'github_mde_func');

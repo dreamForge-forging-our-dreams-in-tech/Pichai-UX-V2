@@ -15,17 +15,57 @@ class NavigationRail extends HTMLElement {
     constructor() {
         // Always call super first in constructor
         super();
+
+        this.index = this.getAttribute('index') || 1;
+    }
+
+    initElement(element) {
+        let forAttr = this.getAttribute('for');
+
+        this.style.gridTemplateColumns = `repeat(` + this.index + `, 1fr)`; // dynamically calculate size of each item and reuse index for size calculations
+
+        element.setAttribute('index', this.index);
+
+        if (!forAttr == '') {
+            let forElement = document.getElementById(forAttr);
+            let el = forElement.children[parseInt(element.getAttribute('index'))];
+
+            if (el.checkVisibility({ opacityProperty: true, visibilityProperty: true, contentVisibilityAuto: true })) {
+                element.classList.add('current');
+            }
+        }
+
+        //automatically select href refrencing to page url.
+        if (element.href == window.location.href) element.classList.add('current');
+
+        element.addEventListener('click', function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+
+            if (!this.classList.contains('current')) {
+
+                try {
+                    this.parentNode.getElementsByClassName('current')[0].classList.remove('current');
+                } catch (e) { }
+                this.classList.add('current');
+            }
+        });
+
+        this.index++ // increase to give everychild its own index integer for the pageChanged callback
+    }
+
+    appendChild(child) {
+        super.appendChild(child);
+
+        this.initElement(child);
     }
 
     connectedCallback() {
         let i;
-        let index = this.getAttribute('index') || 0;
-        let keys = this.children;
         let forAttr = this.getAttribute('for');
+        let keys = this.children;
 
         this.classList.add('tabBarHolder');
-
-        this.style.gridTemplateColumns = `repeat(` + keys.length + `, 1fr)`; // dynamically calculate size of each item
 
         if (this.getAttribute('direction') == 'vertical') this.classList.add('verticalTabbar');
 
@@ -34,34 +74,7 @@ class NavigationRail extends HTMLElement {
         }
 
         for (i of keys) {
-            i.setAttribute('index', index);
-
-            //automatically select href refrencing to page url.
-            if (i.href == window.location.href) i.classList.add('current');
-
-            if (!forAttr == '') {
-                let element = document.getElementById(forAttr);
-                let el = element.children[parseInt(i.getAttribute('index'))];
-
-                if (el.checkVisibility({ opacityProperty: true, visibilityProperty: true, contentVisibilityAuto: true })) {
-                    i.classList.add('current');
-                }
-            }
-
-            i.addEventListener('click', function (e) {
-                e.stopPropagation();
-                e.preventDefault();
-
-                if (!this.classList.contains('current')) {
-
-                    try {
-                        i.parentNode.getElementsByClassName('current')[0].classList.remove('current');
-                    } catch (e) { }
-                    this.classList.add('current');
-                }
-            });
-
-            index++
+            this.initElement(i);
         }
     }
 
