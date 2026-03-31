@@ -1,0 +1,37 @@
+/* Of every element there exists a class with the same name */
+
+.fab {
+    padding: 8px;
+
+    cursor: pointer;
+
+    color: var(--wp--preset--color--secondary-text-color);
+
+    backdrop-filter: blur(var(--blur));
+
+    border-radius: var(--border-radius-short);
+
+    text-align: center;
+
+    position: fixed;
+
+    right: 8px;
+    bottom: 8px;
+
+    z-index: 9999;
+
+    max-width: 200px;
+}
+
+.fab * {
+    color: var(--wp--preset--color--secondary-text-color);
+
+    text-decoration: none;
+}
+
+.fab::before {
+    background-color: var(--wp--preset--color--primary);
+
+    border: none;
+    border-radius: var(--border-radius-short);
+}
