@@ -21,18 +21,7 @@ class GithubMde extends HTMLElement {
         info.style.width = 'calc(100% - 16px)';
         info.classList.add('dialog-content', 'row');
 
-        let labels = document.createElement('navigation-rail');
-        github_intergration.list_labels(this.getAttribute('orgName')).then(labelJSON => {
-            for (const labelName in labelJSON) {
-                const label = labelJSON[labelName];
-
-                let option = document.createElement('a');
-                option.innerHTML = label.name;
-                option.href = label.name;
-
-                labels.appendChild(option);
-            }
-        });
+        let labels = document.createElement('github-labels');
 
         labels.classList.add('hideScrollbar');
         labels.style.margin = '0px';

@@ -16,27 +16,33 @@ class NavigationRail extends HTMLElement {
         // Always call super first in constructor
         super();
 
+        this.startIndex = this.getAttribute('index') || 1;
         this.index = this.getAttribute('index') || 1;
+
+        this.forAttr = document.getElementById(this.getAttribute('for'));
     }
 
     initElement(element) {
-        let forAttr = this.getAttribute('for');
-
         this.style.gridTemplateColumns = `repeat(` + this.index + `, 1fr)`; // dynamically calculate size of each item and reuse index for size calculations
 
         element.setAttribute('index', this.index);
 
-        if (!forAttr == '') {
-            let forElement = document.getElementById(forAttr);
-            let el = forElement.children[parseInt(element.getAttribute('index'))];
+        //cant remember what this was for
+        // if (!this.forAttr == '') {
+        //     let el = this.forAttr.children[parseInt(this.index)];
 
-            if (el.checkVisibility({ opacityProperty: true, visibilityProperty: true, contentVisibilityAuto: true })) {
-                element.classList.add('current');
-            }
+        //     console.log(el)
+        //     if (el.checkVisibility({ opacityProperty: true, visibilityProperty: true, contentVisibilityAuto: true })) {
+        //         element.classList.add('current');
+        //     }
+        // }
+
+        //automatically select href refrencing to page url or the set index.
+        if (element.href == window.location.href) {
+            element.classList.add('current');
+        } else if(element.getAttribute('index') == this.startIndex) {
+            element.classList.add('current');
         }
-
-        //automatically select href refrencing to page url.
-        if (element.href == window.location.href) element.classList.add('current');
 
         element.addEventListener('click', function (e) {
             e.stopPropagation();
@@ -49,6 +55,8 @@ class NavigationRail extends HTMLElement {
                 } catch (e) { }
                 this.classList.add('current');
             }
+
+            this.parentNode.forAttr.pageChanged(this, this.getAttribute('index'));
         });
 
         this.index++ // increase to give everychild its own index integer for the pageChanged callback
@@ -62,15 +70,14 @@ class NavigationRail extends HTMLElement {
 
     connectedCallback() {
         let i;
-        let forAttr = this.getAttribute('for');
         let keys = this.children;
 
         this.classList.add('tabBarHolder');
 
         if (this.getAttribute('direction') == 'vertical') this.classList.add('verticalTabbar');
 
-        if (!forAttr == '') {
-            addForConnection(this, forAttr);
+        if (!this.forAttr == '') {
+            addForConnection(this, this.forAttr);
         }
 
         for (i of keys) {
@@ -79,23 +86,21 @@ class NavigationRail extends HTMLElement {
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
+
         if (this.getAttribute('direction') == 'vertical') this.classList.add('verticalTabbar');
         if (this.getAttribute('direction') != 'vertical') this.classList.remove('verticalTabbar');
 
         if (!this.getAttribute('for') == '') {
-            addForConnection(this, this.getAttribute('for'));
+            addForConnection(this, this.forAttr);
         } else {
-            removeForConnection(this, this.getAttribute('for'));
+            removeForConnection(this, this.forAttr);
         }
     }
 }
 
 function addForConnection(e, e2) {
-    let element = document.getElementById(e2);
-    let i;
-
     //fires the pageChanged function on the connected for element, it executes what the developer put into the pageChanged function/callback.
-    element.pageChanged(e.parentNode.getElementsByClassName('current')[0], this.getAttribute('index'));
+    e2.pageChanged(e.parentNode.getElementsByClassName('current')[0], e.getAttribute('index'));
 }
 
 function removeForConnection(e, e2) {
@@ -107,4 +112,6 @@ function removeForConnection(e, e2) {
     }
 }
 
-customElements.define("navigation-rail", NavigationRail);  
+customElements.define("navigation-rail", NavigationRail);
+
+export { NavigationRail };
