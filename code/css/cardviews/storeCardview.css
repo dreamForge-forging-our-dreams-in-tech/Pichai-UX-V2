@@ -18,7 +18,13 @@
     width: 100%;
 }
 
-.store-tile h2, .store-tile p {
+.store-tile h2,
+.store-tile p {
+    white-space: nowrap;
+    text-overflow: clip;
+    width: 100%;
+    overflow: hidden;
+
     margin-top: 8px;
     margin-bottom: 8px;
 
@@ -33,5 +39,9 @@
 }
 
 .store-tile .simple-button {
-    margin-top:auto;
+    margin-top: auto;
+
+    white-space: nowrap;
+    text-overflow: clip;
+    overflow: hidden;
 }

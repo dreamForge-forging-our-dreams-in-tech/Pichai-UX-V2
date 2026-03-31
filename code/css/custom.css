@@ -11,6 +11,8 @@
 
 @import './headings/headings.css';
 
+@import './buttons/fab.css';
+
 :host {
     display: inline-block;
     /* Essential: allows the element to have width/height */
