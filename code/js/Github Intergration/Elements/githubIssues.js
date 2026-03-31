@@ -89,7 +89,7 @@ class githubIssues extends HTMLElement {
                         issue.created_at,
                         issue.body || 'No description available.',
                         'https://opengraph.githubassets.com/random-token/' + issue.repository_url.split('/').slice(-2).join('/') + '/issues/' + issue.number,
-                        issue.html_url
+                        this.getAttribute('previewPage') || issue.html_url
                     );
                 }
             });

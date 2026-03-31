@@ -17,6 +17,7 @@ add_shortcode('github-repos', 'sc_github_repos');
 function sc_github_issues($atts) {
     return wc_tag('github-issues', shortcode_atts([
         'repourl' => 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues?state=all&per_page=100',
+        'previewpage' => '#',
     ], $atts ?? []), 'grid-container github-issues');
 }
 add_shortcode('github-issues', 'sc_github_issues');
