@@ -26,6 +26,7 @@ class GithubMde extends HTMLElement {
         labels.classList.add('hideScrollbar');
         labels.style.margin = '0px';
         labels.style.flex = '1';
+        labels.style.borderRadius = 'var(--border-radius-short)';
 
         let repos_select = document.createElement('select');
         repos_select.classList.add('tabBarHolder'); // apply same styling as the label selector
@@ -42,6 +43,7 @@ class GithubMde extends HTMLElement {
 
         repos_select.style.margin = '0px';
         repos_select.style.color = 'white';
+        repos_select.style.borderRadius = 'var(--border-radius-short)';
 
         info.append(labels, repos_select);
 
@@ -52,6 +54,7 @@ class GithubMde extends HTMLElement {
         title_input.classList.add('tabBarHolder');
         title_input.placeholder = 'Issue or comment title';
 
+        title_input.style.borderRadius = 'var(--border-radius-short)';
         title_input.style.width = 'calc(100% - 16px)';
         title_input.style.margin = '0px';
         title_input.style.padding = '8px';
