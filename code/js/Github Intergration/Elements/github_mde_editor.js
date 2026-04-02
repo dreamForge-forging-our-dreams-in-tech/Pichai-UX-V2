@@ -13,12 +13,12 @@ class GithubMde extends HTMLElement {
 
     async renderComments(issueNumber, wrapper) {
         let divider = document.createElement('hr');
+        divider.setAttribute('titletext', 'Comments');
         wrapper.appendChild(divider);
 
         let comments = await github_intergration.get_comments(issueNumber);
         for (let i in comments) {
             console.log(comments[i])    
-            divider.setAttribute('titletext', 'Comments: ' + (parseInt(i) + 1));
 
             let comment = document.createElement('github-mde');
             comment.style.width = '100%';
@@ -26,8 +26,8 @@ class GithubMde extends HTMLElement {
             // comment.children[0].getElementsByClassName('dialog-content')[0].remove(); // remove the info section with the repo and label selectors, since we dont need to show that for comments
             comment.setAttribute('readonly', 'true');
 
-            comment.setAttribute('issueTitle', 'Comment by ' + this.issue.user); // set the title of the comment to the username of the commenter
-            comment.setAttribute('issueBody', this.issue.body); // set the body of the comment to the body of the issue, since the comment endpoint returns the issue body instead of the comment body for some reason.
+            comment.setAttribute('issueTitle', 'Comment by ' + comments[i].user.login); // set the title of the comment to the username of the commenter
+            comment.setAttribute('issueBody', comments[i].body); // set the body of the comment to the body of the issue, since the comment endpoint returns the issue body instead of the comment body for some reason.
 
             wrapper.appendChild(comment);
         }

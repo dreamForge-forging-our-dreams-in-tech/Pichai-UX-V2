@@ -26,31 +26,35 @@ class GithubIntergration {
     }
 
     async get_comments(issue_number, repoUrl = 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues') {
+        return new Promise(async (resolve) => {
             const issuePayload = {
-            repoUrl: repoUrl,
-            issueNumber: issue_number,
-        };
+                repoUrl: repoUrl,
+                issueNumber: issue_number,
+            };
 
-        try {
-            const response = await fetch('https://github-app-a49q.onrender.com/get_comments', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json' // 👈 Tells Render you are sending JSON
-                },
-                body: JSON.stringify(issuePayload) // 👈 Turns the JS object into a string
-            });
+            try {
+                const response = await fetch('https://github-app-a49q.onrender.com/get_comments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json' // 👈 Tells Render you are sending JSON
+                    },
+                    body: JSON.stringify(issuePayload) // 👈 Turns the JS object into a string
+                });
 
-            if (!response.ok) {
-                const errorData = await response.json();
-                throw new Error(`Server error: ${errorData.error || response.statusText}`);
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    resolve(errorData.error || response.statusText);
+                    throw new Error(`Server error: ${errorData.error || response.statusText}`);
+                }
+
+                const data = await response.json();
+                resolve(data);
+                console.log('✅ comments succesfully retrieved.', data);
+
+            } catch (error) {
+                console.error('❌ Failed to get comments:', error);
             }
-
-            const data = await response.json();
-            console.log('✅ comments succesfully retrieved.', data);
-
-        } catch (error) {
-            console.error('❌ Failed to get comments:', error);
-        }
+        });
     }
 
     async loadGitHubIssues(url = 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues?state=all&per_page=100') {
