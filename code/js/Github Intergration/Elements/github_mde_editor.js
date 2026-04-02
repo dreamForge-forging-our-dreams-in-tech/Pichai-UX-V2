@@ -11,13 +11,22 @@ class GithubMde extends HTMLElement {
         this.issue = null;
     }
 
-    renderComments(issueNumber, wrapper) {
+    async renderComments(issueNumber, wrapper) {
         let divider = document.createElement('hr');
         wrapper.appendChild(divider);
 
-        for (let i = 0; i < this.issue.comments; i++) {
+        for (let i in await github_intergration.get_comments(issueNumber)) {
+            console.log(i)
             divider.setAttribute('titletext', 'Comments: ' + (parseInt(i) + 1));
+
             let comment = document.createElement('github-mde');
+            comment.style.width = '100%';
+            comment.style.marginBottom = '16px';
+            // comment.children[0].getElementsByClassName('dialog-content')[0].remove(); // remove the info section with the repo and label selectors, since we dont need to show that for comments
+            comment.setAttribute('readonly', 'true');
+
+            comment.setAttribute('issueTitle', 'Comment by ' + this.issue.user); // set the title of the comment to the username of the commenter
+            comment.setAttribute('issueBody', this.issue.body); // set the body of the comment to the body of the issue, since the comment endpoint returns the issue body instead of the comment body for some reason.
 
             wrapper.appendChild(comment);
         }
@@ -34,7 +43,7 @@ class GithubMde extends HTMLElement {
         wrapper.classList.add('dialog-wrapper');
 
         const title = document.createElement('h2');
-        title.textContent = this.getAttribute('comments') == 'true    ' ? 'View issue or comment' : 'Create a new issue or comment';
+        title.textContent = this.getAttribute('issueTitle') || (this.getAttribute('comments') == 'true' ? 'View issue and comments' : 'Create a new issue or comment');
         title.classList.add('dialog-title');
 
         const info = document.createElement('div');
@@ -89,7 +98,7 @@ class GithubMde extends HTMLElement {
         mde_editor.id = 'mde_eitor';
         mde_editor.classList.add('tabBarHolder');
         mde_editor.placeholder = 'Issue or comment body';
-        mde_editor.value = this.issue ? this.issue.body : ''; // set the body of the issue if the issue number was provided.
+        mde_editor.value = this.getAttribute('issueBody') || (this.issue ? this.issue.body : ''); // set the body of the issue if the issue number was provided.
 
         mde_editor.style.width = 'calc(100% - 16px)';
         mde_editor.style.padding = '8px';

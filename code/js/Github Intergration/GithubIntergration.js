@@ -17,12 +17,16 @@ class GithubIntergration {
 
     async get_issue(issueNumber, repoUrl = 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues?state=all&per_page=100') {
         return new Promise((resolve) => {
-                let issues = this.loadGitHubIssues(repoUrl);
+            let issues = this.loadGitHubIssues(repoUrl);
 
-                issues.then(issuesJSON => {
-                    resolve(issuesJSON[issueNumber]);
-                });
+            issues.then(issuesJSON => {
+                resolve(issuesJSON[issueNumber]);
+            });
         });
+    }
+
+    async get_comments(issue_number, repoUrl = 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues') {
+            return await get_fetch(`${repoUrl}/${issue_number}/comments`);
     }
 
     async loadGitHubIssues(url = 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues?state=all&per_page=100') {
