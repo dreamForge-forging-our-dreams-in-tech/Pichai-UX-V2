@@ -15,8 +15,9 @@ class GithubMde extends HTMLElement {
         let divider = document.createElement('hr');
         wrapper.appendChild(divider);
 
-        for (let i in await github_intergration.get_comments(issueNumber)) {
-            console.log(i)
+        let comments = await github_intergration.get_comments(issueNumber);
+        for (let i in comments) {
+            console.log(comments[i])    
             divider.setAttribute('titletext', 'Comments: ' + (parseInt(i) + 1));
 
             let comment = document.createElement('github-mde');
