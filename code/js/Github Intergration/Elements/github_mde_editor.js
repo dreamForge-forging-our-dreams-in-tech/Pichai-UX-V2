@@ -13,11 +13,13 @@ class GithubMde extends HTMLElement {
 
     renderComments(issueNumber, wrapper) {
         let divider = document.createElement('hr');
-        divider.setAttribute('titletext', 'Comments: 0');
         wrapper.appendChild(divider);
 
-        for(let i = 0; i < this.issue.comments; i++) {
-            console.log(i);
+        for (let i = 0; i < this.issue.comments; i++) {
+            divider.setAttribute('titletext', 'Comments: ' + (parseInt(i) + 1));
+            let comment = document.createElement('github-mde');
+
+            wrapper.appendChild(comment);
         }
     }
 
