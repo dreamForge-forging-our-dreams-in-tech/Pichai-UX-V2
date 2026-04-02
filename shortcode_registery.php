@@ -52,6 +52,9 @@ function github_mde_func($atts)
         'readonly' => 'false',
         'issuenumber' => '',
         'comments' => 'false',
+        'mode' => 'issue',
+        'issueTitle' => '',
+        'issueBody' => '',
 
     ], $atts ?? []), '');
 }

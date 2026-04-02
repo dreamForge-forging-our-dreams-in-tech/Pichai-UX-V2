@@ -111,7 +111,35 @@ class GithubIntergration {
         }
     }
 
-    async create_issue(orgname, repo, title, body, labels) {
+    async create_comment(body, issue_number) {
+        const issuePayload = {
+            issueNumber: issue_number,
+            body: body,
+        };
+
+        try {
+            const response = await fetch('https://github-app-a49q.onrender.com/create_comment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // 👈 Tells Render you are sending JSON
+                },
+                body: JSON.stringify(issuePayload) // 👈 Turns the JS object into a string
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`Server error: ${errorData.error || response.statusText}`);
+            }
+
+            const data = await response.json();
+            console.log('✅ Issue successfully created on GitHub!', data);
+
+        } catch (error) {
+            console.error('❌ Failed to submit issue:', error);
+        }
+    }
+
+        async create_issue(orgname, repo, title, body, labels) {
         const issuePayload = {
             owner: orgname,
             repo: repo,
