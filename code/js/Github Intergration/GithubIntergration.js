@@ -15,8 +15,18 @@ class GithubIntergration {
         });
     }
 
-    async loadGitHubIssues(url = 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues?state=all&per_page=100') { 
-        
+    async get_issue(issueNumber, repoUrl = 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues?state=all&per_page=100') {
+        return new Promise((resolve) => {
+                let issues = this.loadGitHubIssues(repoUrl);
+
+                issues.then(issuesJSON => {
+                    resolve(issuesJSON[issueNumber]);
+                });
+        });
+    }
+
+    async loadGitHubIssues(url = 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues?state=all&per_page=100') {
+
         try {
             // Point this to your Render URL (e.g., https://your-app.onrender.com/api/issues)
             // If testing locally, use 'http://localhost:3000/api/issues'
@@ -25,7 +35,6 @@ class GithubIntergration {
             // Loop through issues and create a json
             let issuesJSON = {};
             issues.forEach(issue => {
-                console.log(issues)
                 issuesJSON[issue.number] = issue;
             });
 

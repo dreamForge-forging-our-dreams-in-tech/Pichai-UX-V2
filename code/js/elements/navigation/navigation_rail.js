@@ -48,6 +48,8 @@ class NavigationRail extends HTMLElement {
             e.stopPropagation();
             e.preventDefault();
 
+            if (this.parentNode.getAttribute('readonly') == 'true') return; // if the parent tab bar is set to readonly, dont allow clicking on the tabs
+
             if (!this.classList.contains('current')) {
 
                 try {

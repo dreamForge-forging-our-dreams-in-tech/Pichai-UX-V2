@@ -11,6 +11,8 @@
 
 @import './headings/headings.css';
 
+@import './hr.css';
+
 @import './buttons/fab.css';
 
 :host {

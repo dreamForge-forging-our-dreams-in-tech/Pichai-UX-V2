@@ -7,14 +7,32 @@ class GithubMde extends HTMLElement {
     constructor() {
         // Always call super first in constructor
         super();
+
+        this.issue = null;
     }
 
-    connectedCallback() {
+    renderComments(issueNumber, wrapper) {
+        let divider = document.createElement('hr');
+        divider.setAttribute('titletext', 'Comments: 0');
+        wrapper.appendChild(divider);
+
+        for(let i = 0; i < this.issue.comments; i++) {
+            console.log(i);
+        }
+    }
+
+    async connectedCallback() {
+        if (this.hasAttribute('issuenumber') || window.location.search.includes('issueNumber')) { // if the element has an issue number attribute or the url includes github-mde? then we assume we are trying to view an issue or comment rather than create a new one, and we load the issue or comment instead of showing the editor.
+            let issueNumber = this.getAttribute('issuenumber') || new URLSearchParams(window.location.search).get('issueNumber');
+
+            this.issue = await github_intergration.get_issue(issueNumber);
+        }
+
         const wrapper = document.createElement('div');
         wrapper.classList.add('dialog-wrapper');
 
         const title = document.createElement('h2');
-        title.textContent = 'Create a new issue or comment';
+        title.textContent = this.getAttribute('comments') == 'true    ' ? 'View issue or comment' : 'Create a new issue or comment';
         title.classList.add('dialog-title');
 
         const info = document.createElement('div');
@@ -53,6 +71,7 @@ class GithubMde extends HTMLElement {
         let title_input = document.createElement('input');
         title_input.classList.add('tabBarHolder');
         title_input.placeholder = 'Issue or comment title';
+        title_input.value = this.issue ? this.issue.title : ''; // set the title of the issue if the issue number was provided.
 
         title_input.style.borderRadius = 'var(--border-radius-short)';
         title_input.style.width = 'calc(100% - 16px)';
@@ -68,6 +87,7 @@ class GithubMde extends HTMLElement {
         mde_editor.id = 'mde_eitor';
         mde_editor.classList.add('tabBarHolder');
         mde_editor.placeholder = 'Issue or comment body';
+        mde_editor.value = this.issue ? this.issue.body : ''; // set the body of the issue if the issue number was provided.
 
         mde_editor.style.width = 'calc(100% - 16px)';
         mde_editor.style.padding = '8px';
@@ -88,7 +108,18 @@ class GithubMde extends HTMLElement {
             github_intergration.create_issue('dreamForge-forging-our-dreams-in-tech', 'The-Magic-Garden', title_input.value, mde_editor.value, labels.getElementsByClassName('current')[0].getAttribute('href'));
         });
 
+        if (this.getAttribute('readonly') == 'true') {
+            title_input.setAttribute('readonly', 'true');
+            mde_editor.setAttribute('readonly', 'true');
+            button.style.display = 'none';
+            labels.setAttribute('readonly', 'true');
+        }
+
         wrapper.append(title, info, issue_title, content, button);
+
+        if (this.getAttribute('comments') == 'true') {
+            this.renderComments(this.issue.number, wrapper);
+        }
 
         this.appendChild(wrapper);
 
