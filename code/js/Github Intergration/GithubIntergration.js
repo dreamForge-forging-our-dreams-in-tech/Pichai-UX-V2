@@ -111,10 +111,12 @@ class GithubIntergration {
         }
     }
 
-    async create_comment(body, issue_number) {
+    async create_comment(body, issue_number, owner, repoUrl) {
         const issuePayload = {
             issueNumber: issue_number,
             body: body,
+            owner: owner,
+            repo: repoUrl
         };
 
         try {

@@ -16,9 +16,18 @@ class GithubMde extends HTMLElement {
         divider.setAttribute('titletext', 'Comments');
         wrapper.appendChild(divider);
 
+        let create_comment = document.createElement('github-mde');
+        create_comment.setAttribute('mode', 'comment');
+        create_comment.setAttribute('issueNumber', issueNumber);
+        create_comment.setAttribute('issueBody', '');
+        create_comment.setAttribute('comments', 'false');
+        create_comment.style.width = '100%';
+        create_comment.style.marginBottom = '16px';
+
+        wrapper.parentNode.appendChild(create_comment);
+
         let comments = await github_intergration.get_comments(issueNumber);
-        for (let i in comments) {
-            console.log(comments[i])
+        for (let i in comments) {   
 
             let comment = document.createElement('github-mde');
             comment.style.width = '100%';
@@ -129,7 +138,7 @@ class GithubMde extends HTMLElement {
 
         button.addEventListener('click', () => {
             if (this.getAttribute('mode') == 'comment') {
-                github_intergration.create_comment(mde_editor.value, this.issue.number);
+                github_intergration.create_comment(mde_editor.value, this.issue.number, 'dreamForge-forging-our-dreams-in-tech', 'The-Magic-Garden');
             } else {
                 github_intergration.create_issue('dreamForge-forging-our-dreams-in-tech', 'The-Magic-Garden', title_input.value, mde_editor.value, labels.getElementsByClassName('current')[0].getAttribute('href'));
             }
@@ -138,12 +147,12 @@ class GithubMde extends HTMLElement {
         wrapper.appendChild(button);
 
         if (this.getAttribute('readonly') == 'true') {
-            title_input.setAttribute('readonly', 'true');
             mde_editor.setAttribute('readonly', 'true');
             button.style.display = 'none';
 
             if (this.getAttribute('mode') == 'issue') {
                 try {
+                    title_input.setAttribute('readonly', 'true');
                     labels.setAttribute('readonly', 'true');
                 } catch (e) { }
             }
