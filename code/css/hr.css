@@ -1,0 +1,31 @@
+hr {
+    width: calc(100% - 16px);
+
+    border-width: 0px;
+    margin: 8px;
+}
+
+hr::after {
+    content: 'Hello there this is some text that i use to create this divider it is very long yes yes, but not visible to user how that come you ask? well the font is no bigger than 0px wich means the user cannot see this font, funny right? well imma make this text even longer why? soo that this divider also works on a bigger screen like your TV but not only that then itll also work on some random screen that are even BIGGER than a normal TV, still not long engoug thats sad yes yes thats why im adding this very long and random bullshit message that also counts as a easteregg ;)';
+    text-decoration: wavy line-through;
+    text-decoration-color: var(--wp--preset--color--primary);
+    height: 20px !important;
+    color: TRANSPARENT;
+    overflow: hidden;
+    display: block;
+    margin-top: 2px;
+}
+
+hr[titleText]:not([titleText=""])::before {
+    height: calc(20px - 8px);
+    z-index: 999;
+    content: attr(titleText);
+    overflow: hidden;
+    display: block;
+    background-color: var(--wp--preset--color--primary);
+    color: var(--wp--preset--color--secondary-text-color);
+    border-radius: var(--border-radius-rounded);
+    padding: 4px;
+    width: max-content;
+    font-size: 13px;
+}

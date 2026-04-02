@@ -34,5 +34,13 @@ function dreamforge_editor_assets()
         '1.0',
         true
     );
+
+        wp_enqueue_script(
+        'dreamforge-cardview-block-variations',
+        get_template_directory_uri() . '/code/js/wordpress-block-variations/dividers.js',
+        array('wp-blocks'), // Dependency on WordPress blocks library
+        '1.0',
+        true
+    );
 }
 add_action('enqueue_block_editor_assets', 'dreamforge_editor_assets');

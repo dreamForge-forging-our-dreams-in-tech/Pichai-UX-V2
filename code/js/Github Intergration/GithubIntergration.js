@@ -15,8 +15,50 @@ class GithubIntergration {
         });
     }
 
-    async loadGitHubIssues(url = 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues?state=all&per_page=100') { 
-        
+    async get_issue(issueNumber, repoUrl = 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues?state=all&per_page=100') {
+        return new Promise((resolve) => {
+            let issues = this.loadGitHubIssues(repoUrl);
+
+            issues.then(issuesJSON => {
+                resolve(issuesJSON[issueNumber]);
+            });
+        });
+    }
+
+    async get_comments(issue_number, repoUrl = 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues') {
+        return new Promise(async (resolve) => {
+            const issuePayload = {
+                repoUrl: repoUrl,
+                issueNumber: issue_number,
+            };
+
+            try {
+                const response = await fetch('https://github-app-a49q.onrender.com/get_comments', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json' // 👈 Tells Render you are sending JSON
+                    },
+                    body: JSON.stringify(issuePayload) // 👈 Turns the JS object into a string
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    resolve(errorData.error || response.statusText);
+                    throw new Error(`Server error: ${errorData.error || response.statusText}`);
+                }
+
+                const data = await response.json();
+                resolve(data);
+                console.log('✅ comments succesfully retrieved.', data);
+
+            } catch (error) {
+                console.error('❌ Failed to get comments:', error);
+            }
+        });
+    }
+
+    async loadGitHubIssues(url = 'https://api.github.com/repos/dreamForge-forging-our-dreams-in-tech/The-Magic-Garden/issues?state=all&per_page=100') {
+
         try {
             // Point this to your Render URL (e.g., https://your-app.onrender.com/api/issues)
             // If testing locally, use 'http://localhost:3000/api/issues'
@@ -25,7 +67,6 @@ class GithubIntergration {
             // Loop through issues and create a json
             let issuesJSON = {};
             issues.forEach(issue => {
-                console.log(issues)
                 issuesJSON[issue.number] = issue;
             });
 
@@ -70,7 +111,37 @@ class GithubIntergration {
         }
     }
 
-    async create_issue(orgname, repo, title, body, labels) {
+    async create_comment(body, issue_number, owner, repoUrl) {
+        const issuePayload = {
+            issueNumber: issue_number,
+            body: body,
+            owner: owner,
+            repo: repoUrl
+        };
+
+        try {
+            const response = await fetch('https://github-app-a49q.onrender.com/create_comment', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json' // 👈 Tells Render you are sending JSON
+                },
+                body: JSON.stringify(issuePayload) // 👈 Turns the JS object into a string
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`Server error: ${errorData.error || response.statusText}`);
+            }
+
+            const data = await response.json();
+            console.log('✅ Issue successfully created on GitHub!', data);
+
+        } catch (error) {
+            console.error('❌ Failed to submit issue:', error);
+        }
+    }
+
+        async create_issue(orgname, repo, title, body, labels) {
         const issuePayload = {
             owner: orgname,
             repo: repo,
