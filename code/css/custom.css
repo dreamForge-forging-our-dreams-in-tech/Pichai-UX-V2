@@ -166,7 +166,7 @@ main {
     z-index: 1;
 }
 
-.row {
+.row-simple {
     display: flex;
     flex-direction: row;
 }
