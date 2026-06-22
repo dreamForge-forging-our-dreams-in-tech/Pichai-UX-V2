@@ -165,8 +165,3 @@ main {
     position: relative;
     z-index: 1;
 }
-
-.row-simple {
-    display: flex;
-    flex-direction: row;
-}
