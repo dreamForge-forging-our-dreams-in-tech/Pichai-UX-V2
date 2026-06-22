@@ -31,6 +31,9 @@
     --border-radius-rounded: 30px;
     --border-radius-short: 10px;
 
+    --header-font: "sans";
+    --regular-font: "sans";
+
     --primary: var(--wp--preset--color--primary, #6d546a);
     --secondary: var(--wp--preset--color--secondary, #a87186);
     --tertiary: var(--wp--preset--color--tertiary, #542343);
@@ -73,6 +76,8 @@
 
 * {
     border-style:none;
+
+    font-family: var(--regular-font);
 }
 
 body,
