@@ -15,11 +15,11 @@
 
     margin: 8px;
 
-    color: var(--wp--preset--color--secondary-text-color);
+    color: var(--secondary-text-color);
 }
 
 .tabBarHolder::before {
-    background-color: var(--wp--preset--color--primary);
+    background-color: var(--primary);
 
     border: none;
     border-radius: var(--border-radius-rounded);
@@ -29,7 +29,7 @@
     background-color: TRANSPARENT;
 
     text-align: center;
-    color: var(--wp--preset--color--secondary-text-color);
+    color: var(--secondary-text-color);
     text-decoration: none;
 
     height: 12px;
@@ -43,15 +43,15 @@
 }
 
 .tabBarHolder .current {
-    background-color: var(--wp--preset--color--sub-primary);
-    color: var(--wp--preset--color--secondary-text-color);
+    background-color: var(--primary-container);
+    color: var(--secondary-text-color);
 }
 
 .tabBarHolder .current::before {
     border-radius: var(--border-radius-rounded);
     border-width: 0px;
 
-    background-color: var(--wp--preset--color--sub-primary);
+    background-color: var(--primary-container);
     opacity: var(--transparency);
 }
 

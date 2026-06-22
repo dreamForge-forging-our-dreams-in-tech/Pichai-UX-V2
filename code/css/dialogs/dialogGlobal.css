@@ -11,7 +11,7 @@
 
 .dialog-wrapper * ::placeholder {
     /* make any text inputs or placeholders white */
-    color: var(--wp--preset--color--secondary-text-color); 
+    color: var(--secondary-text-color); 
 }
 
 .dialog-title {
@@ -20,7 +20,7 @@
 
     cursor: pointer;
 
-    color: var(--wp--preset--color--secondary-text-color);
+    color: var(--secondary-text-color);
 
     backdrop-filter: blur(var(--blur));
 
@@ -33,7 +33,7 @@
 }
 
 .dialog-title::before {
-    background-color: var(--wp--preset--color--primary);
+    background-color: var(--primary);
 
     border: none;
     border-top-right-radius: var(--border-radius-rounded);
@@ -48,7 +48,7 @@
 
     cursor: pointer;
 
-    color: var(--wp--preset--color--secondary-text-color);
+    color: var(--secondary-text-color);
 
     border-radius: var(--border-radius-short);
 
@@ -58,7 +58,7 @@
 }
 
 .dialog-content::before {
-    background-color: var(--wp--preset--color--primary);
+    background-color: var(--primary);
 
     border: none;
     border-radius: var(--border-radius-short);
@@ -71,7 +71,7 @@
 
     cursor: pointer;
 
-    color: var(--wp--preset--color--secondary-text-color);
+    color: var(--secondary-text-color);
 
     border-bottom-right-radius: var(--border-radius-rounded);
     border-bottom-left-radius: var(--border-radius-rounded);
@@ -84,7 +84,7 @@
 }
 
 .dialog-content-end::before {
-    background-color: var(--wp--preset--color--primary);
+    background-color: var(--primary);
 
     border: none;
     border-bottom-right-radius: var(--border-radius-rounded);

@@ -7,7 +7,7 @@
 }
 
 .cardview::before {
-    background-color: var(--wp--preset--color--primary);
+    background-color: var(--primary);
 
     border-radius: var(--border-radius-rounded);
 }

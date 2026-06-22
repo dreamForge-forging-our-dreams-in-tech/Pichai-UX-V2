@@ -29,6 +29,22 @@
     --border-radius-rounded: 30px;
     --border-radius-short: 10px;
 
+    --primary: var(--wp--preset--color--primary, #6d546a);
+    --secondary: var(--wp--preset--color--secondary, #a87186);
+    --tertiary: var(--wp--preset--color--tertiary, #542343);
+
+    --primary-container: var(--wp--pereset--color--sub-primary, color-mix(in srgb, var(--primary), white 15%));
+    --secondary-container: var(--wp--pereset--color--sub-secondary, color-mix(in srgb, var(--secondary), white 15%));
+    --tertiary-container: var(--wp--pereset--color--sub-tertiary, color-mix(in srgb, var(--tertiary), white 15%));
+
+    --primary-text-color: color-mix(in srgb, var(--primary), white 45%);
+    --secondary-text-color: color-mix(in srgb, var(--secondary), white 45%);
+    --tertiary-text-color: color-mix(in srgb, var(--tertiary), white 45%);
+
+    --primary-background-color: color-mix(in srgb, var(--primary), white 30%);
+    --secondary-background-color: color-mix(in srgb, var(--secondary), white 30%);
+    --tertiary-background-color: color-mix(in srgb, var(--tertiary), white 30%);
+
     --header-svg: polygon(20.75% 98.25%, 20.75% 98.25%, 19.22% 97.25%, 17.72% 95.76%, 16.22% 93.7%, 14.7% 91.01%,
             13.12% 87.62%, 11.46% 83.45%, 9.68% 78.45%, 7.76% 72.55%, 5.67% 65.66%, 3.37% 57.73%,
             0% 45.88%, 0.05% 23.2%, 0.08% 0.52%, 49.73% 0.21%, 49.73% 0.21%, 60.01% 0.18%,
@@ -137,6 +153,6 @@ main {
 }
 
 .row {
-    display:flex;
-    flex-direction:row;
+    display: flex;
+    flex-direction: row;
 }

@@ -3,7 +3,7 @@
 
     cursor: pointer;
 
-    color: var(--wp--preset--color--secondary-text-color);
+    color: var(--secondary-text-color);
 
     backdrop-filter: blur(var(--blur));
     border-radius: var(--border-radius-rounded);
@@ -12,7 +12,7 @@
 }
 
 .text-input::before {
-    background-color: var(--wp--preset--color--primary);
+    background-color: var(--primary);
 
     border: none;
     border-radius: var(--border-radius-rounded);

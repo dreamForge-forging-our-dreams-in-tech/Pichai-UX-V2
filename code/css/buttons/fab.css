@@ -5,7 +5,7 @@
 
     cursor: pointer;
 
-    color: var(--wp--preset--color--secondary-text-color);
+    color: var(--secondary-text-color);
 
     backdrop-filter: blur(var(--blur));
 
@@ -24,13 +24,13 @@
 }
 
 .fab * {
-    color: var(--wp--preset--color--secondary-text-color);
+    color: var(--secondary-text-color);
 
     text-decoration: none;
 }
 
 .fab::before {
-    background-color: var(--wp--preset--color--primary);
+    background-color: var(--primary-container);
 
     border: none;
     border-radius: var(--border-radius-short);

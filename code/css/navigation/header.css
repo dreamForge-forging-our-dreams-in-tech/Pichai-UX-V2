@@ -8,7 +8,7 @@ header {
 
     cursor: pointer;
 
-    color: var(--wp--preset--color--secondary-text-color);
+    color: var(--secondary-text-color);
 
     backdrop-filter: blur(var(--blur));
 
@@ -29,7 +29,7 @@ header .is-layout-flex {
 }
 
 header::before {
-    background-color: var(--wp--preset--color--primary);
+    background-color: var(--primary);
 
     clip-path: var(--header-svg);
     -webkit-clip-path: var(--header-svg);
