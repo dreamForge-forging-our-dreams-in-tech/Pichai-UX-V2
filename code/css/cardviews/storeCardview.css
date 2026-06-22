@@ -32,7 +32,7 @@
 }
 
 .store-tile::before {
-    background-color: var(--wp--preset--color--secondary);
+    background-color: var(--secondary);
 
     border: none;
     border-radius: var(--border-radius-short);

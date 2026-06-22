@@ -8,7 +8,7 @@ footer {
 
     cursor: pointer;
 
-    color: var(--wp--preset--color--secondary-text-color);
+    color: var(--secondary-text-color);
 
     backdrop-filter: blur(var(--blur));
 
@@ -33,7 +33,7 @@ footer .is-layout-flex {
 }
 
 footer::before {
-    background-color: var(--wp--preset--color--primary);
+    background-color: var(--primary);
 
     clip-path: var(--footer-svg);
     -webkit-clip-path: var(--footer-svg);
